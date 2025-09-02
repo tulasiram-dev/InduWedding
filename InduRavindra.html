@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f3e9;
+            color: #4a2c2a;
+        }
+        .playfair-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .invitation-container {
+            position: relative;
+            background-color: #ffffff;
+            border-radius: 2rem;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        .sumuhurtham-bg {
+            background-image: url('https://i.postimg.cc/FdMQg1Yf/Image-02-09-25-at-15-31.png');
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        .sumuhurtham-overlay {
+            background-color: rgba(255, 255, 255, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        .highlight-3d {
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            transform: translateZ(0); /* A quick hack for 3D effect in Tailwind */
+        }
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="invitation-container w-full max-w-2xl border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+        <div class="content-wrapper p-8 sm:p-12 text-center">
+            
+            <p class="text-sm tracking-widest uppercase">Sreerasthu & Shubhamasthu</p>
+            <h1 class="playfair-font text-3xl sm:text-5xl mt-2 font-bold text-gray-800 leading-tight">Koduganti's Wedding Invitation</h1>
+            <p class="mt-4 text-lg">With the blessings of Sri Hari Gurugalu</p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center mt-6 gap-2 sm:gap-6">
+                <h2 class="playfair-font text-4xl font-bold text-red-800">Sai Indira</h2>
+                <span class="text-2xl font-bold">&</span>
+                <h2 class="playfair-font text-4xl font-bold text-red-800">Ravindra</h2>
+            </div>
+            
+            <p class="mt-8 text-center text-sm sm:text-base leading-relaxed">
+                With heartfelt joy, we cordially invite you, along with your family and friends,
+                to join us on the auspicious occasion of the marriage of our daughter, Chi.La.Sow. Sai Indira, with Chi. Ravindra.
+            </p>
+
+            <div class="mt-10 p-6 rounded-xl sumuhurtham-bg highlight-3d">
+                <div class="sumuhurtham-overlay"></div>
+                <div class="relative z-20">
+                    <p class="text-xs tracking-wider uppercase">Sumuhurtham</p>
+                    <p class="playfair-font text-2xl mt-2 font-bold">Sunday, October 12, 2025</p>
+                    <p class="text-xl font-medium mt-1">at 11:28 am</p>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <p class="text-xs tracking-wider uppercase">Venue</p>
+                <p class="playfair-font text-xl mt-2 font-bold">Shri Kutchhi Mitra Mandal</p>
+                <p class="text-base mt-1">Kutchhi Bhavan, Eden Bagh, Ramkoti, Hyderabad</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center mt-4 gap-4">
+                    <a href="https://maps.google.com/?q=Shri+Kutchhi+Mitra+Mandal,+Kutchhi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad" target="_blank" class="px-6 py-2 bg-red-700 text-white font-semibold rounded-full shadow-lg hover:bg-red-800 transition-colors duration-300">
+                        View on Map
+                    </a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra's%20Wedding&dates=20251012T112800/20251012T140000&details=Join%20us%20for%20the%20wedding%20of%20Sai%20Indira%20and%20Ravindra.&location=Shri%20Kutchhi%20Mitra%20Mandal,%20Kutchhi%20Bhavan,%20Eden%20Bagh,%20Ramkoti,%20Hyderabad" target="_blank" class="px-6 py-2 bg-gray-500 text-white font-semibold rounded-full shadow-lg hover:bg-gray-600 transition-colors duration-300">
+                        Add to Calendar
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-10 p-6 border-t border-gray-300">
+                <p class="text-sm font-medium">Invited by:</p>
+                <p class="text-lg font-semibold mt-2">Madhwasri Koduganti Ramachandar Rao & Smt. Sridevi</p>
+                <p class="text-lg font-semibold">Kum. Dastrala Lakshmi Narasamma</p>
+            </div>
+
+            <!-- Personalized Audio Section -->
+            <div class="mt-10 p-6 border-t border-gray-300">
+                <h3 class="text-sm font-medium">Personalized Audio Message</h3>
+                <p class="text-xs text-gray-500 mt-2">Click below to play a special message from the couple.</p>
+                <div class="mt-4 flex justify-center">
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2163413331&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                </div>
+            </div>
+
+            <div class="mt-10 p-6 border-t border-gray-300">
+                <p class="text-sm font-medium">Queries on WhatsApp</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center mt-4 gap-4">
+                    <a href="https://wa.me/918985370403" target="_blank" class="px-6 py-2 bg-green-500 text-white font-semibold rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300">
+                        WhatsApp Manju
+                    </a>
+                    <a href="https://wa.me/917989923058" target="_blank" class="px-6 py-2 bg-green-500 text-white font-semibold rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300">
+                        WhatsApp Ram
+                    </a>
+                </div>
+            </div>
+
+            <p class="mt-8 text-sm text-gray-500">
+                With Best Compliments from all near and dear.
+            </p>
+
+        </div>
+    </div>
+    
+    <canvas id="confettiCanvas"></canvas>
+    
+    <!-- Lightweight confetti (no external library) -->
+    <script>
+        (function(){
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize); resize();
+            const colors = ['#e76f51','#f4a261','#e9c46a','#2a9d8f','#8ab17d','#b56576'];
+            const N = 100;
+            const pieces = Array.from({length:N}, ()=>({
+                x: Math.random()*canvas.width,
+                y: -20 - Math.random()*canvas.height,
+                r: 3 + Math.random()*5,        // radius
+                s: 1 + Math.random()*2,        // speed
+                w: 1 + Math.random()*2,        // sway
+                a: Math.random()*Math.PI*2,    // phase
+                c: colors[(Math.random()*colors.length)|0],
+                rot: Math.random()*Math.PI*2,
+                rotSpd: (Math.random()*0.2 - 0.1)
+            }));
+            const start = performance.now();
+            function tick(t){
+                const dt = (t - start) / 1000;
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                for(const p of pieces){
+                    p.y += p.s*3; p.x += Math.sin((p.y+p.a)/20)*p.w; p.rot += p.rotSpd;
+                    if(p.y > canvas.height+16){ p.y = -20; p.x = Math.random()*canvas.width; }
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rot);
+                    ctx.fillStyle = p.c;
+                    // draw rectangle flakes
+                    ctx.fillRect(-p.r, -p.r*0.6, p.r*2, p.r*1.2);
+                    ctx.restore();
+                }
+                if(dt < 4){ requestAnimationFrame(tick); }
+                else { canvas.style.transition='opacity .6s'; canvas.style.opacity='0'; setTimeout(()=>canvas.remove(), 700); }
+            }
+            requestAnimationFrame(tick);
+        })();
+    </script>
+</body>
+</html>
