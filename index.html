@@ -1,114 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sai Indira & Ravindra – Wedding Invitation</title>
-  <meta name="description" content="Wedding invite for Sai Indira & Ravindra. Tap hotspots to add to calendar, open maps, or RSVP on WhatsApp." />
-  <style>
-    :root{
-      --maxw: 768px;         /* intrinsic image width used for layout reference */
-      --debug: 0;            /* set to 1 to show hotspot boxes */
-    }
-    body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:#f7f3e9; color:#2b2b2b;
-      display:flex; align-items:center; justify-content:center; min-height:100dvh; padding:24px;
-    }
-    .card{
-      width:min(var(--maxw), 100%);
-      margin:auto; background:#fff; border-radius:16px; overflow:hidden;
-      box-shadow:0 8px 30px rgba(0,0,0,.09); border:1px solid #eee;
-    }
-    .invite{
-      position:relative; width:100%; line-height:0; /* remove gaps around inline imgs */
-    }
-    .invite img{
-      width:100%; height:auto; display:block;
-    }
-    /* Hotspots: use percentage-based placement so they stay aligned as the image scales */
-    .hotspot{
-      position:absolute; display:block; cursor:pointer;
-      outline: calc(var(--debug) * 1px) dashed rgba(200,0,0,.6); /* debug viz */
-      outline-offset:-2px; border-radius:6px;
-      /* Make the whole box clickable but invisible */
-      background: rgba(255,255,255, calc(var(--debug) * .25));
-      text-indent:-9999px; overflow:hidden; /* hide label text */
-    }
-    /* Below: positions are percentages relative to the image box.
-       Adjust left/top/width/height if needed after you preview. */
-
-    /* Date/Time block (center): Add to Calendar */
-    .hs-calendar{ left: 39%; top: 46.5%; width: 22%; height: 7%; }
-
-    /* Venue text (left lower-mid): Google Maps */
-    .hs-venue{ left: 6%; top: 63.5%; width: 54%; height: 12%; }
-
-    /* QR code area (near bottom center): WhatsApp share */
-    .hs-qr{ left: 44.5%; top: 76.5%; width: 11%; height: 10.5%; }
-
-    /* Bottom dancers strip: Call (or your link of choice) */
-    .hs-call{ left: 0%; top: 90.5%; width: 100%; height: 7.5%; }
-
-    /* Fallback buttons (for accessibility + non-visual users) */
-    .actions{
-      display:grid; gap:10px; padding:14px; background:#fffdf8; border-top:1px solid #f0e8d9;
-    }
-    .actions a{
-      text-decoration:none; font-weight:600; padding:12px 14px; border-radius:999px;
-      border:1px solid #eadfce; color:#2b2b2b; background:#fff;
-      display:inline-block; text-align:center;
-    }
-    .note{font-size:12px; color:#77685f; text-align:center; padding:0 14px 16px;}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sai Indira & Ravindra – Wedding Invitation</title>
+<style>
+  :root{ --maxw:768px; --show-guides:0 } /* set to 1 to see guide boxes */
+  body{
+    margin:0; background:#f7f3e9; color:#2b2b2b;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    min-height:100dvh; display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  .card{ width:min(var(--maxw),100%); background:#fff; border-radius:16px; overflow:hidden;
+         border:1px solid #eee; box-shadow:0 8px 30px rgba(0,0,0,.09); }
+  .wrap{ line-height:0 } /* no gaps around inline SVG */
+  svg{ width:100%; height:auto; display:block }
+  .hotspot{ fill:rgba(255,255,255,0); stroke:rgba(255,0,0,var(--show-guides)); stroke-width:2 }
+  .actions{ display:grid; gap:10px; padding:14px; background:#fffdf8; border-top:1px solid #f0e8d9 }
+  .actions a{ text-decoration:none; font-weight:600; padding:12px 14px; border-radius:999px;
+              border:1px solid #eadfce; color:#2b2b2b; background:#fff; text-align:center }
+  .note{ font-size:12px; color:#77685f; text-align:center; padding:0 14px 16px }
+  .tools{ text-align:right; padding:8px 12px 0 }
+  .tools button{ border:1px solid #eadfce; background:#fff; border-radius:999px; padding:6px 10px; cursor:pointer }
+</style>
 </head>
 <body>
+<main class="card" aria-label="Wedding invitation for Sai Indira and Ravindra">
+  <div class="tools">
+    <!-- Optional: click to show/hide red guide boxes for fine-tuning -->
+    <button id="toggleGuides" type="button">Show guides</button>
+  </div>
 
-  <main class="card" role="main" aria-label="Wedding invitation for Sai Indira and Ravindra">
-    <figure class="invite">
-      <!-- TODO: keep the file name the same as your exported Canva image -->
-      <img src="InduWedding/12.png"
-           width="768" height="1082"
-           alt="Wedding Invitation: Chi.La.Sow. Sai Indira with Chi. Ravindra. Date: October 12 at 11:28 AM. Venue: Shri Kutchi Mitra Mandal, Kutchi Bhavan, Eden Bagh, Ramkoti, Hyderabad. Lunch from 12:30 Noon at the venue.">
+  <div class="wrap">
+    <!--
+      viewBox matches the image’s intrinsic size (width=768, height=1082).
+      All hotspot rectangles use those SAME pixel coordinates, so they always align.
+    -->
+    <svg id="inviteSVG" viewBox="0 0 768 1082" role="img"
+         aria-label="Tap areas for Calendar, Maps, WhatsApp, and Call">
+      <!-- IMPORTANT: update the path if needed -->
+      <image href="InduWedding/12.png" x="0" y="0" width="768" height="1082"
+             preserveAspectRatio="xMidYMid meet" />
 
-      <!-- Hotspot: Add to Google Calendar -->
-      <!-- TODO: Update dates if needed. Here we assume 12 Oct 2025, 11:28–14:30 IST -->
-      <a class="hotspot hs-calendar"
-         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra%20Wedding&dates=20251012T112800/20251012T143000&ctz=Asia/Kolkata&location=Shri%20Kutchi%20Mitra%20Mandal%2C%20Kutchi%20Bhavan%2C%20Eden%20Bagh%2C%20Ramkoti%2C%20Hyderabad&details=Lunch%20from%2012%3A30%20pm%20onwards%20at%20the%20venue"
-         target="_blank" rel="noopener"
-         aria-label="Add to Google Calendar">Add to Calendar</a>
+      <!-- Hotspot: Date/Time (center) → Add to Google Calendar -->
+      <!-- coords tuned; expand/shrink as needed -->
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra%20Wedding&dates=20251012T112800/20251012T143000&ctz=Asia/Kolkata&location=Shri%20Kutchi%20Mitra%20Mandal%2C%20Kutchi%20Bhavan%2C%20Eden%20Bagh%2C%20Ramkoti%2C%20Hyderabad&details=Lunch%20from%2012%3A30%20pm%20onwards%20at%20the%20venue"
+         target="_blank" rel="noopener" aria-label="Add to Google Calendar">
+        <rect class="hotspot" x="300" y="503" width="170" height="76" rx="8" ry="8"/>
+      </a>
 
-      <!-- Hotspot: Venue → Google Maps (Directions) -->
-      <a class="hotspot hs-venue"
-         href="https://www.google.com/maps/dir/?api=1&destination=Shri+Kutchi+Mitra+Mandal,+Kutchi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad"
-         target="_blank" rel="noopener"
-         aria-label="Open venue in Google Maps">Open Maps</a>
+      <!-- Hotspot: Venue block (left) → Google Maps -->
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Shri+Kutchi+Mitra+Mandal,+Kutchi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad"
+         target="_blank" rel="noopener" aria-label="Open venue in Google Maps">
+        <rect class="hotspot" x="46" y="687" width="415" height="130" rx="8" ry="8"/>
+      </a>
 
-      <!-- Hotspot: QR block → WhatsApp share -->
-      <!-- TODO: Edit the message text and any links you include -->
-      <a class="hotspot hs-qr"
-         href="https://wa.me/?text=You%E2%80%99re%20invited%20to%20Sai%20Indira%20%26%20Ravindra%E2%80%99s%20wedding!%0A12%20Oct%202025%2C%2011%3A28%20AM%20(IST)%0AVenue%3A%20Shri%20Kutchi%20Mitra%20Mandal%2C%20Ramkoti%2C%20Hyderabad%0AMap%3A%20https%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%3Fapi%3D1%26destination%3DShri%2BKutchi%2BMitra%2BMandal%252C%2BRamkoti%252C%2BHyderabad%0A"
-         target="_blank" rel="noopener"
-         aria-label="Share RSVP on WhatsApp">RSVP on WhatsApp</a>
-
-      <!-- Hotspot: bottom strip → Call the family -->
-      <!-- TODO: Put a real number -->
-      <a class="hotspot hs-call"
-         href="tel:+917989923058"
-         aria-label="Call the family">Call</a>
-    </figure>
-
-    <!-- Fallback / accessible action row (also helps if someone misses the hotspots) -->
-    <div class="actions" aria-label="Quick actions">
-      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra%20Wedding&dates=20251012T112800/20251012T143000&ctz=Asia/Kolkata&location=Shri%20Kutchi%20Mitra%20Mandal%2C%20Kutchi%20Bhavan%2C%20Eden%20Bagh%2C%20Ramkoti%2C%20Hyderabad&details=Lunch%20from%2012%3A30%20pm%20onwards%20at%20the%20venue" target="_blank" rel="noopener">➕ Add to Google Calendar</a>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Shri+Kutchi+Mitra+Mandal,+Kutchi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad" target="_blank" rel="noopener">🗺️ Open in Google Maps</a>
+      <!-- Hotspot: QR area (bottom center) → WhatsApp share -->
       <a href="https://wa.me/?text=You%E2%80%99re%20invited%20to%20Sai%20Indira%20%26%20Ravindra%E2%80%99s%20wedding!%0A12%20Oct%202025%2C%2011%3A28%20AM%20(IST)%0AVenue%3A%20Shri%20Kutchi%20Mitra%20Mandal%2C%20Ramkoti%2C%20Hyderabad%0AMap%3A%20https%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%3Fapi%3D1%26destination%3DShri%2BKutchi%2BMitra%2BMandal%252C%2BRamkoti%252C%2BHyderabad%0A"
-         target="_blank" rel="noopener">💬 Share on WhatsApp</a>
-      <a href="tel:+917989923058">📞 Call</a>
-    </div>
+         target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+        <rect class="hotspot" x="341" y="829" width="96" height="120" rx="8" ry="8"/>
+      </a>
 
-    <p class="note">Tip: if a hotspot seems slightly off, set <code>--debug: 1</code> in the CSS to see the boxes, adjust the percentages, then set it back to 0.</p>
-  </main>
+      <!-- Hotspot: Bottom dancers strip → Call -->
+      <a href="tel:+919999999999" aria-label="Call the family">
+        <rect class="hotspot" x="0" y="981" width="768" height="81"/>
+      </a>
+    </svg>
+  </div>
 
+  <!-- Accessible fallback buttons -->
+  <div class="actions" aria-label="Quick actions">
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra%20Wedding&dates=20251012T112800/20251012T143000&ctz=Asia/Kolkata&location=Shri%20Kutchi%20Mitra%20Mandal%2C%20Kutchi%20Bhavan%2C%20Eden%20Bagh%2C%20Ramkoti%2C%20Hyderabad&details=Lunch%20from%2012%3A30%20pm%20onwards%20at%20the%20venue" target="_blank" rel="noopener">➕ Add to Google Calendar</a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Shri+Kutchi+Mitra+Mandal,+Kutchi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad" target="_blank" rel="noopener">🗺️ Open in Google Maps</a>
+    <a href="https://wa.me/?text=You%E2%80%99re%20invited%20to%20Sai%20Indira%20%26%20Ravindra%E2%80%99s%20wedding!%0A12%20Oct%202025%2C%2011%3A28%20AM%20(IST)%0AVenue%3A%20Shri%20Kutchi%20Mitra%20Mandal%2C%20Ramkoti%2C%20Hyderabad%0AMap%3A%20https%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%3Fapi%3D1%26destination%3DShri%2BKutchi%2BMitra%2BMandal%252C%2BRamkoti%252C%2BHyderabad%0A"
+       target="_blank" rel="noopener">💬 Share on WhatsApp</a>
+    <a href="tel:+919999999999">📞 Call</a>
+  </div>
+
+  <p class="note">If a hotspot still feels off, click “Show guides” and nudge the <code>x/y/width/height</code> values in the <code>&lt;rect&gt;</code> elements. SVG keeps alignment perfect across screens.</p>
+</main>
+
+<script>
+  const btn = document.getElementById('toggleGuides');
+  let guides = 0;
+  btn.addEventListener('click', () => {
+    guides = guides ? 0 : 1;
+    document.documentElement.style.setProperty('--show-guides', guides);
+    btn.textContent = guides ? 'Hide guides' : 'Show guides';
+  });
+
+  // Helper: click anywhere on the SVG to log pixel & percentage coords (handy for fine-tuning)
+  const svg = document.getElementById('inviteSVG');
+  svg.addEventListener('click', (e) => {
+    const r = svg.getBoundingClientRect();
+    const px = e.clientX - r.left, py = e.clientY - r.top;
+    const xPct = (px / r.width) * 100, yPct = (py / r.height) * 100;
+    console.log(`Pixels x=${px.toFixed(0)}, y=${py.toFixed(0)}  |  Percent left=${xPct.toFixed(1)}%, top=${yPct.toFixed(1)}%`);
+  });
+</script>
 </body>
 </html>
