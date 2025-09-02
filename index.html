@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sai Indira & Ravindra – Wedding Invitation</title>
+  <meta name="description" content="Wedding invite for Sai Indira & Ravindra. Tap hotspots to add to calendar, open maps, or RSVP on WhatsApp." />
+  <style>
+    :root{
+      --maxw: 768px;         /* intrinsic image width used for layout reference */
+      --debug: 0;            /* set to 1 to show hotspot boxes */
+    }
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:#f7f3e9; color:#2b2b2b;
+      display:flex; align-items:center; justify-content:center; min-height:100dvh; padding:24px;
+    }
+    .card{
+      width:min(var(--maxw), 100%);
+      margin:auto; background:#fff; border-radius:16px; overflow:hidden;
+      box-shadow:0 8px 30px rgba(0,0,0,.09); border:1px solid #eee;
+    }
+    .invite{
+      position:relative; width:100%; line-height:0; /* remove gaps around inline imgs */
+    }
+    .invite img{
+      width:100%; height:auto; display:block;
+    }
+    /* Hotspots: use percentage-based placement so they stay aligned as the image scales */
+    .hotspot{
+      position:absolute; display:block; cursor:pointer;
+      outline: calc(var(--debug) * 1px) dashed rgba(200,0,0,.6); /* debug viz */
+      outline-offset:-2px; border-radius:6px;
+      /* Make the whole box clickable but invisible */
+      background: rgba(255,255,255, calc(var(--debug) * .25));
+      text-indent:-9999px; overflow:hidden; /* hide label text */
+    }
+    /* Below: positions are percentages relative to the image box.
+       Adjust left/top/width/height if needed after you preview. */
+
+    /* Date/Time block (center): Add to Calendar */
+    .hs-calendar{ left: 39%; top: 46.5%; width: 22%; height: 7%; }
+
+    /* Venue text (left lower-mid): Google Maps */
+    .hs-venue{ left: 6%; top: 63.5%; width: 54%; height: 12%; }
+
+    /* QR code area (near bottom center): WhatsApp share */
+    .hs-qr{ left: 44.5%; top: 76.5%; width: 11%; height: 10.5%; }
+
+    /* Bottom dancers strip: Call (or your link of choice) */
+    .hs-call{ left: 0%; top: 90.5%; width: 100%; height: 7.5%; }
+
+    /* Fallback buttons (for accessibility + non-visual users) */
+    .actions{
+      display:grid; gap:10px; padding:14px; background:#fffdf8; border-top:1px solid #f0e8d9;
+    }
+    .actions a{
+      text-decoration:none; font-weight:600; padding:12px 14px; border-radius:999px;
+      border:1px solid #eadfce; color:#2b2b2b; background:#fff;
+      display:inline-block; text-align:center;
+    }
+    .note{font-size:12px; color:#77685f; text-align:center; padding:0 14px 16px;}
+  </style>
+</head>
+<body>
+
+  <main class="card" role="main" aria-label="Wedding invitation for Sai Indira and Ravindra">
+    <figure class="invite">
+      <!-- TODO: keep the file name the same as your exported Canva image -->
+      <img src="InduRavindra_Invitation.png"
+           width="768" height="1082"
+           alt="Wedding Invitation: Chi.La.Sow. Sai Indira with Chi. Ravindra. Date: October 12 at 11:28 AM. Venue: Shri Kutchi Mitra Mandal, Kutchi Bhavan, Eden Bagh, Ramkoti, Hyderabad. Lunch from 12:30 Noon at the venue.">
+
+      <!-- Hotspot: Add to Google Calendar -->
+      <!-- TODO: Update dates if needed. Here we assume 12 Oct 2025, 11:28–14:30 IST -->
+      <a class="hotspot hs-calendar"
+         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra%20Wedding&dates=20251012T112800/20251012T143000&ctz=Asia/Kolkata&location=Shri%20Kutchi%20Mitra%20Mandal%2C%20Kutchi%20Bhavan%2C%20Eden%20Bagh%2C%20Ramkoti%2C%20Hyderabad&details=Lunch%20from%2012%3A30%20pm%20onwards%20at%20the%20venue"
+         target="_blank" rel="noopener"
+         aria-label="Add to Google Calendar">Add to Calendar</a>
+
+      <!-- Hotspot: Venue → Google Maps (Directions) -->
+      <a class="hotspot hs-venue"
+         href="https://www.google.com/maps/dir/?api=1&destination=Shri+Kutchi+Mitra+Mandal,+Kutchi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad"
+         target="_blank" rel="noopener"
+         aria-label="Open venue in Google Maps">Open Maps</a>
+
+      <!-- Hotspot: QR block → WhatsApp share -->
+      <!-- TODO: Edit the message text and any links you include -->
+      <a class="hotspot hs-qr"
+         href="https://wa.me/?text=You%E2%80%99re%20invited%20to%20Sai%20Indira%20%26%20Ravindra%E2%80%99s%20wedding!%0A12%20Oct%202025%2C%2011%3A28%20AM%20(IST)%0AVenue%3A%20Shri%20Kutchi%20Mitra%20Mandal%2C%20Ramkoti%2C%20Hyderabad%0AMap%3A%20https%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%3Fapi%3D1%26destination%3DShri%2BKutchi%2BMitra%2BMandal%252C%2BRamkoti%252C%2BHyderabad%0A"
+         target="_blank" rel="noopener"
+         aria-label="Share RSVP on WhatsApp">RSVP on WhatsApp</a>
+
+      <!-- Hotspot: bottom strip → Call the family -->
+      <!-- TODO: Put a real number -->
+      <a class="hotspot hs-call"
+         href="tel:+919999999999"
+         aria-label="Call the family">Call</a>
+    </figure>
+
+    <!-- Fallback / accessible action row (also helps if someone misses the hotspots) -->
+    <div class="actions" aria-label="Quick actions">
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sai%20Indira%20%26%20Ravindra%20Wedding&dates=20251012T112800/20251012T143000&ctz=Asia/Kolkata&location=Shri%20Kutchi%20Mitra%20Mandal%2C%20Kutchi%20Bhavan%2C%20Eden%20Bagh%2C%20Ramkoti%2C%20Hyderabad&details=Lunch%20from%2012%3A30%20pm%20onwards%20at%20the%20venue" target="_blank" rel="noopener">➕ Add to Google Calendar</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Shri+Kutchi+Mitra+Mandal,+Kutchi+Bhavan,+Eden+Bagh,+Ramkoti,+Hyderabad" target="_blank" rel="noopener">🗺️ Open in Google Maps</a>
+      <a href="https://wa.me/?text=You%E2%80%99re%20invited%20to%20Sai%20Indira%20%26%20Ravindra%E2%80%99s%20wedding!%0A12%20Oct%202025%2C%2011%3A28%20AM%20(IST)%0AVenue%3A%20Shri%20Kutchi%20Mitra%20Mandal%2C%20Ramkoti%2C%20Hyderabad%0AMap%3A%20https%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%3Fapi%3D1%26destination%3DShri%2BKutchi%2BMitra%2BMandal%252C%2BRamkoti%252C%2BHyderabad%0A"
+         target="_blank" rel="noopener">💬 Share on WhatsApp</a>
+      <a href="tel:+919999999999">📞 Call</a>
+    </div>
+
+    <p class="note">Tip: if a hotspot seems slightly off, set <code>--debug: 1</code> in the CSS to see the boxes, adjust the percentages, then set it back to 0.</p>
+  </main>
+
+</body>
+</html>
